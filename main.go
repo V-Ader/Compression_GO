@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 
 	"compression/file"
 	"compression/tree"
@@ -25,20 +24,6 @@ func code(data []byte, tree tree.Tree) string {
 		ret += preCalculated[letter]
 	}
 	return ret
-}
-
-func entropy(input []byte) float64 {
-	counts := make(map[byte]int)
-	for _, ch := range input {
-		counts[ch]++
-	}
-	var result float64
-	n := float64(len(input))
-	for _, count := range counts {
-		p := float64(count) / n
-		result -= p * math.Log2(p)
-	}
-	return result
 }
 
 func decode(data string, code tree.Tree) string {
